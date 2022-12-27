@@ -1,0 +1,72 @@
+:root {
+    --pickled_bluewood: #33435E;
+    --bunker:  #0F1618;
+    --jungle_green: #28A17D ;
+    --zambezi: #605453;
+    --indigo: #566BC8;
+    --capecod: #313D37;
+    /* Second Palette */
+    --ebony: #040307;
+    --portage: #9668F5;
+    --royal_blue: #6E4FEF;
+    --royal_black: #2A293E;
+    --royalblue: #563AE1;
+    --jacarta: #362A60;
+    --gigas: #5740A0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Dosis', sans-serif;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    height: 11vh;
+    background: var(--bunker);
+}
+
+.main {
+    width: 100%;
+    height: 50vh;
+    background: var(--capecod);
+}
+
+.trending {
+    width: 100%;
+    height: 50vh;
+    background: var(--ebony);
+}
+.categories {
+    width: 100%;
+    height: 50vh;
+    background: var(--gigas);
+}
+.popular {
+    width: 100%;
+    height: 50vh;
+    background: var(--indigo);
+}
+.upcoming {
+    width: 100%;
+    height: 50vh;
+    background: var(--jacarta);
+}
+.footer {
+    width: 100%;
+    height: 11vh;
+    background: var(--jungle_green);
+}
