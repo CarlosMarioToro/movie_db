@@ -1,0 +1,13 @@
+#sample,
+#result,
+#expected {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box {
+    border: solid 1px black;
+    margin: 5px;
+    padding: 5px;
+    color: white;
+}
