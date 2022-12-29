@@ -12,7 +12,7 @@
         <title>Platzi Movies</title>
     </head>
     <body>
-        <section class="header">
+        <section class="header" id="header">
             <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448
                 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3
                 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32
@@ -23,17 +23,18 @@
             <header class="">
                 <h1>MOVIES DB</h1>
             </header>
-            <nav class="menu inactive">
+            <nav class="menu">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Tendencias</a></li>
-                    <li><a href="#">Categorias</a></li>
-                    <li><a href="#">Popular</a></li>
-                    <li><a href="#">Próximas</a></li>
+                    <li><a href="#details">Inicio</a></li>
+                    <li><a href="#trends">Tendencias</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#popular">Popular</a></li>
+                    <li><a href="#upcoming">Próximas</a></li>
+                    <li><a href="#aboutme">Acerca de mí</a></li>
                 </ul>
             </nav>
             <form id="searchForm" class="header-searchForm">
-                <input type="text" placeholder="Buscar" class=" inactive"/>
+                <input type="text" placeholder="Buscar" class="inactive"/>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512
                     512"><path
                     d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6
@@ -45,7 +46,7 @@
                 </svg>
             </form>
         </section>
-        <section class="main">
+        <section class="main" id="details">
             <div id="movieBackground"></div>
             <div class="movieDetails">
                 <div class="movieDetails_characteristics">
@@ -74,7 +75,7 @@
                 </a>
             </div>
         </section>
-        <section class="trending">
+        <section class="trending" id="trends">
             <div class="trendingPreview-header">
                 <h2 class="trendingPreview-title">Tendencias</h2>
                 <button class="trendingPreview-btn">Ver más</button>
@@ -82,7 +83,7 @@
             
             <article class="trendingPreview-movieList"></article>
         </section>
-        <section class="categories">
+        <section class="categories" id="categorias">
             <div class="categories-header">
                 <h2 class="categories-title">Categorias</h2>
                 <button class="categories-btn">Ver más</button>
@@ -90,7 +91,7 @@
 
             <article class="categories-list"></article>
         </section>
-        <section class="popular">
+        <section class="popular" id="popular">
             <div class="popularPreview-header">
                 <h2 class="popularPreview-title">Popular</h2>
                 <button class="popularPreview-btn">Ver más</button>
@@ -98,7 +99,7 @@
             
             <article class="popularPreview-movieList"></article>
         </section>
-        <section class="upcoming">
+        <section class="upcoming" id="upcoming">
             <div class="upcomingPreview-header">
                 <h2 class="upcomingPreview-title">Próximas</h2>
                 <button class="upcomingPreview-btn">Ver más</button>
@@ -106,7 +107,7 @@
             
             <article class="upcomingPreview-movieList"></article>
         </section>
-        <section class="footer">
+        <section class="footer" id="aboutme">
             <footer>Hecho con Amor por Carlos Toro</footer>
             <a href="#" aria-label="Read more about Seminole tax hike">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
@@ -123,5 +124,6 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./src/secrets.js"></script>
         <script src="./src/main.js"></script>
+        <script src="./src/navigation.js"></script>
     </body>
     </html>

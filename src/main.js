@@ -9,7 +9,9 @@ const api = axios.create({
 });
 
 const API_URL = 'https://api.themoviedb.org/3';
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w300';
+const IMAGE_URL = 'https://image.tmdb.org/t/p/';
+
+const imageSize = 'original';
 
 function secondsToString(minutes) {
     var hour = Math.floor(minutes / 60);
@@ -22,10 +24,8 @@ async function getBackgroundMoviesPreview(id) {
     // const res = await fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}`);
     // const data = await res.json();
 
-    console.log(data);
-    console.log(data.runtime);
     const imagen = document.getElementById('movieBackground');
-    imagen.style.backgroundImage = "url(" + IMAGE_URL + data.poster_path + ")";
+    imagen.style.backgroundImage = "url(" + IMAGE_URL + imageSize + data.poster_path + ")";
     const score = document.getElementById('score');
     score.innerText = data.vote_average;
     const duration = document.getElementById('duration');
@@ -65,7 +65,7 @@ async function getTrendingMoviesPreview() {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + movie.poster_path);
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
 
         movieContainer.appendChild(movieImg);
         trendingPreviewMoviesContainer.appendChild(movieContainer);
@@ -110,7 +110,7 @@ async function getPopularMoviesPreview() {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + movie.poster_path);
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
 
         movieContainer.appendChild(movieImg);
         popularPreviewMoviesContainer.appendChild(movieContainer);
@@ -131,14 +131,9 @@ async function getUpcomingMoviesPreview() {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + movie.poster_path);
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
 
         movieContainer.appendChild(movieImg);
         upcomingPreviewMoviesContainer.appendChild(movieContainer);
     });
 }
-
-getTrendingMoviesPreview();
-getCategoriesPreview();
-getPopularMoviesPreview();
-getUpcomingMoviesPreview();

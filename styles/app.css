@@ -194,6 +194,7 @@ button {
 .header {
     width: 100%;
     height: 9vh;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -205,6 +206,24 @@ header h1 {
 
 .menu ul {
     display: flex;
+    justify-content: space-between  ;
+}
+.menu a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 14px;
+}
+
+.menu li {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--background-bunker);
+    text-align: center;
+    color: #fff;
+}
+
+.menu li:hover {
+    border-bottom: 1px solid red;
 }
 
 .header-searchForm {
@@ -216,8 +235,8 @@ header h1 {
 }
 
 .header-searchForm input {
-    height: 48px;
-    width: 100%;
+    height: 35px;
+    width: 80%;
     border-radius: 8px;
 }
 
@@ -612,4 +631,14 @@ header h1 {
 /* Navigation */
 .inactive {
     display: none;
+}
+
+@media only screen and (min-width:768px) {
+    #movieBackground {   
+        width: 100%; 
+        height: 400px;
+        background-repeat: no-repeat;
+        background-size: container;
+        background-position: center;
+    }
 }

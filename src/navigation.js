@@ -3,15 +3,39 @@ window.addEventListener('hashchange', navigator, false);
 
 function navigator() {
     if (location.hash.startsWith('#trends')) {
-        console.log('TRENDS');
+        trendsPage();
     } else if (location.hash.startsWith('#search=')) {
-        console.log('Search!!');
+        searchPage();
     } else if (location.hash.startsWith('#movie=')) {
-        console.log('Movie!!');
+        movieDetailsPage();
     } else if (location.hash.startsWith('#categories=')) {
-        console.log('Categoria!!');
+        categoriesPage();
     } else {
-        console.log('Home!!');
+        homePage();
     }
-    location.hash
+}
+
+function homePage() {
+    console.log('Home!!');
+
+    getTrendingMoviesPreview();
+    getCategoriesPreview();
+    getPopularMoviesPreview();
+    getUpcomingMoviesPreview();
+}
+
+function categoriesPage() {
+    console.log('Categoria!!');
+}
+
+function movieDetailsPage() {
+    console.log('Movie!!');
+}
+
+function searchPage() {
+    console.log('Search!!');
+}
+
+function trendsPage() {
+    console.log('TRENDS');
 }
