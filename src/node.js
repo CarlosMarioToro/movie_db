@@ -11,7 +11,6 @@ const footerSection = document.querySelector('#aboutme');
 // Lists & Containers
 const menu = document.querySelector('.menu');
 const searchForm = document.querySelector('#searchForm input');
-
 const trendingMoviesPreviewList = document.querySelector('.trendingPreview-movieList');
 const relatedMoviesPreviewList = document.querySelector('.relatedPreview-movieList');
 const categoriesMoviesPreviewList = document.querySelector('.categoriesPreview-movieList');
@@ -24,8 +23,6 @@ const categoriesPreviewList = document.querySelector('.categories .categories-li
 const categoriesPreviewMovieList = document.querySelector('.categories .categoriesPreview-movieList');
 const popularPreviewMovieList = document.querySelector('.popular .popularPreview-movieList');
 const upcomingPreviewMovieList = document.querySelector('.upcoming .upcomingPreview-movieList');
-// const movieDetailCategoriesList = document.querySelector('#categories-list .movieDetails_genres');
-// const relatedMoviesContainer = document.querySelector('.relatedPreview-movieList');
 
 // Elements
 const verDescripcion = document.querySelector('.generalDescription');
@@ -39,16 +36,7 @@ const relatedHomeBtn = document.querySelector('.relatedHomeBack');
 const categoriesHomeBtn = document.querySelector('.categoriesHomeBack');
 const popularHomeBtn = document.querySelector('.popularHomeBack');
 const upcomingHomeBtn = document.querySelector('.upcomingHomeBack');
-// const arrowBtn = document.querySelector('.header-arrow');
-// const headerCategoryTitle = document.querySelector('.header-title--categoryView');
 
-// const searchFormInput = document.querySelector('#searchForm input');
 const searchFormBtn = document.querySelector('#searchBtn');
 const closeBtn = document.querySelector('.closeBtn');
 const infoBtn = document.querySelector('.movieDetail_btn-info');
-
-// const trendingBtn = document.querySelector('.trendingPreview-btn');
-
-// const movieDetailTitle = document.querySelector('.movieDetail-title');
-// const movieDetailDescription = document.querySelector('.movieDetail-description');
-// const movieDetailScore = document.querySelector('.movieDetail-score');

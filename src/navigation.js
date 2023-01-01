@@ -52,6 +52,8 @@ function navigator() {
     } else {
         homePage();
     }
+
+    window.scrollTo(0, 0);
 }
 
 function homePage() {
@@ -127,6 +129,8 @@ function searchPage() {
     verDescripcion.classList.add('inactive');
     headerTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+
+    searchForm.classList.add('scale-up-right');
 
 }
 

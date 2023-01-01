@@ -21,8 +21,25 @@ function minutesToString(minutes) {
 
 // Utils
 
-function creteMovies(params) {
-    
+function createMovies(movies, container) {
+    container.innerHTML = '';
+
+    movies.forEach(movie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const movieImg = document.createElement('img');
+        movieImg.classList.add('movie-img');
+        movieImg.setAttribute('alt', movie.title);
+        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
+
+        movieImg.addEventListener('click', () => {
+            getBackgroundMoviesPreview(movie.id);
+        });
+
+        movieContainer.appendChild(movieImg);
+        container.appendChild(movieContainer);
+    });
 }
 
 async function getBackgroundMoviesPreview(id) {
@@ -126,39 +143,14 @@ async function getRelatedMoviesPreview(id) {
     const { data } = await api('/movie/' + id + '/similar');
 
     const movies = data.results;
-    relatedMoviesPreviewList.innerHTML = '';
-    movies.forEach(movie => {
-        const relatingPreviewMoviesContainer = document.querySelector('.related .relatedPreview-movieList')
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieContainer.appendChild(movieImg);
-        relatedMoviesPreviewList.appendChild(movieContainer);
-    });
+    createMovies(movies, relatedMoviesPreviewList);
 }
 
 async function getCategoriesMoviesPreview(id) {
     const { data } = await api('/discover/movie?with_genres=' + id);
 
     const movies = data.results;
-    categoriesPreviewMovieList.innerHTML =  "";
-    movies.forEach(movie => {
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieContainer.appendChild(movieImg);
-        categoriesPreviewMovieList.appendChild(movieContainer)
-    });
+    createMovies(movies, categoriesPreviewMovieList);
 }
 
 async function getCategoriesPreview() {
@@ -193,36 +185,12 @@ async function getPopularMoviesPreview() {
     const { data } = await api('/movie/popular');
 
     const movies = data.results;
-    popularMoviesPreviewList.innerHTML = '';
-    movies.forEach(movie => {
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieContainer.appendChild(movieImg);
-        popularMoviesPreviewList.appendChild(movieContainer);
-    });
+    createMovies(movies, popularMoviesPreviewList);
 }
 
 async function getUpcomingMoviesPreview() {
     const { data } = await api('/movie/upcoming');
 
-    const movies = data.results;    
-    upcomingMoviesPreviewList.innerHTML = '';
-    movies.forEach(movie => {
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieContainer.appendChild(movieImg);
-        upcomingMoviesPreviewList.appendChild(movieContainer);
-    });
+    const movies = data.results;
+    createMovies(movies, upcomingMoviesPreviewList);
 }
