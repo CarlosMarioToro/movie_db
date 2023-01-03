@@ -216,20 +216,67 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
-.header-container--long {
-    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
-    background-size: cover !important;
-    height: 480px;
-    position: fixed;
-    top: 0;
-    width: 100%;
+.hamburger {
+    min-height: 30px;
+    max-width: 50px;
+    cursor: pointer;
+}
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+    background-color: var(--text-color);
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    border-radius: 5px;
+    content: '';
+    transition-timing-function: ease;
+    transition-duration: .5s;
+    transition-property: transform,opacity;
+}
+.hamburger-inner:before {
+    top: 10px;
+}
+.hamburger-inner:after {
+    top: 20px;
+}
+
+.hamburger.open .hamburger-inner {
+    transform: translate3d(0,10px,0) rotate(45deg);
+}
+.hamburger.open .hamburger-inner:after {
+    transform: translate3d(0,-20px,0) rotate(-90deg);
+}
+.hamburger.open .hamburger-inner:before {
+    transform: translate3d(0,-10px,0) rotate(90deg);
 }
 
 .header-title {
     color: var(--header-title);
+}
+
+.respmenu {
+    color: white;
+    position: absolute;
+    background: #123456;
+    min-height: 48px;
+    z-index: 100;
+    left: 0;
+    top: 9vh;
+    width: 100%;
+}
+
+.respmenu a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+    border-bottom: 2px solid #456789;
+    max-width: 100%;
+    background: #234567;
+    font-variant: small-caps;
+    text-shadow: 1px 1px black;
 }
 
 .menu ul {
@@ -264,7 +311,7 @@ button {
 
 .header-searchForm input {
     height: 35px;
-    width: 72%;
+    width: 70%;
     border-radius: 8px;
 }
 
@@ -300,6 +347,9 @@ button {
 .main {
     width: 100%;
     height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     position: relative;
 }
 
@@ -475,6 +525,7 @@ button {
     cursor: pointer;
     text-decoration: none;
 }
+
 .movieDetail_btn-info span {
     width: 86px;
     height: 28px;
@@ -551,6 +602,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 .trendingHomeBack {
@@ -577,6 +629,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 /* Related Movies */
@@ -630,6 +683,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 .relatedHomeBack {
@@ -656,6 +710,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 /* Categories */
@@ -683,6 +738,12 @@ button {
     position: relative;
     flex-wrap: wrap;
     margin-bottom: 15px;
+}
+
+.categoriesPreview-btn {
+    border-radius: 8px;
+    height: 32px;
+    width: 72px;
 }
 
 .homeBack {
@@ -716,6 +777,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 .categories-title {
@@ -825,6 +887,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 .popularHomeBack {
@@ -904,6 +967,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 .upcomingHomeBack {
@@ -930,6 +994,7 @@ button {
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    cursor: pointer;
 }
 
 /* Footer */

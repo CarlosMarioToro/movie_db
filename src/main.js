@@ -24,21 +24,27 @@ function minutesToString(minutes) {
 function createMovies(movies, container) {
     container.innerHTML = '';
 
+    console.log(movies);
     movies.forEach(movie => {
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieImg.addEventListener('click', () => {
-            getBackgroundMoviesPreview(movie.id);
-        });
-
-        movieContainer.appendChild(movieImg);
-        container.appendChild(movieContainer);
+        if (movie.poster_path !== null) {
+            console.log(movie.poster_path);
+            const movieContainer = document.createElement('div');
+            movieContainer.classList.add('movie-container');
+    
+            const movieImg = document.createElement('img');
+            movieImg.classList.add('movie-img');
+            movieImg.setAttribute('alt', movie.title);
+            movieImg.setAttribute('title', movie.title);
+            movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
+    
+            movieImg.addEventListener('click', () => {
+                location.hash = `#moviedetails=${movie.id}-${movie.original_title}`;
+                getBackgroundMoviesPreview(movie.id);
+            });
+    
+            movieContainer.appendChild(movieImg);
+            container.appendChild(movieContainer);            
+        }
     });
 }
 
@@ -54,6 +60,11 @@ async function getBackgroundMoviesPreview(id) {
     const title = document.getElementById('title');
     title.innerText = data.title;
 
+    infoBtn.addEventListener('click', () => {
+        location.hash = `#moviedetails=${data.id}-${data.original_title}`;
+        navigator();
+    });
+
     data.genres.forEach(genre => {
         // const genresContainer = document.querySelector('.movieDetails_genres');
         const genreContainer = document.createElement('div');
@@ -68,12 +79,14 @@ async function getBackgroundMoviesPreview(id) {
         genreContainer.appendChild(genreSpanContainer);
     })
     generalDescription(id);
+    
+    getRelatedMoviesPreview(id);
 }
 
 async function generalDescription(id) {
     const { data } = await api('/movie/' + id);
 
-    const generalDescriptionContainer = document.querySelector('.cardDescription');
+    // const generalDescriptionContainer = document.querySelector('.cardDescription');
     
     generalDescriptionContainer.innerHTML = '';
 
@@ -118,25 +131,10 @@ async function getTrendingMoviesPreview() {
     const { data } = await api('/trending/movie/day');
 
     const movies = data.results;
-    trendingMoviesPreviewList.innerHTML = '';
-    movies.forEach(movie => {
-        const movieContainer = document.createElement('div');
-        movieContainer.classList.add('movie-container');
-
-        const movieImg = document.createElement('img');
-        movieImg.classList.add('movie-img');
-        movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
-
-        movieImg.addEventListener('click', () => {
-            getBackgroundMoviesPreview(movie.id);
-        });
-
-        movieContainer.appendChild(movieImg);
-        trendingMoviesPreviewList.appendChild(movieContainer);
-    });
+    createMovies(movies, trendingMoviesPreviewList);
+    
     getBackgroundMoviesPreview(movies[0].id);
-    getRelatedMoviesPreview(movies[0].id)
+    // getRelatedMoviesPreview(movies[0].id)
 }
 
 async function getRelatedMoviesPreview(id) {
@@ -155,13 +153,13 @@ async function getCategoriesMoviesPreview(id) {
 
 async function getCategoriesPreview() {
     const { data } = await api('/genre/movie/list');
-
+    
     const categories = data.genres;
     categoriesPreviewList.innerHTML = "";
     categories.forEach(category => {
         const categoryContainer = document.createElement('div');
         categoryContainer.classList.add('category-container');
-
+        
         const categorytitle = document.createElement('h3');
         categorytitle.classList.add('category-title');
         const categoryTitleText = document.createTextNode(category.name);
@@ -193,4 +191,11 @@ async function getUpcomingMoviesPreview() {
 
     const movies = data.results;
     createMovies(movies, upcomingMoviesPreviewList);
+}
+
+async function getMoviesBySearch(query) {
+    const { data } = await api('/search/movie?query=' + query);
+
+    const movies = data.results;
+    createMovies(movies, categoriesPreviewMovieList);
 }

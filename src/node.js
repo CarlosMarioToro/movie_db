@@ -3,7 +3,7 @@ const headerSection = document.querySelector('#header');
 const detailSection = document.querySelector('#details');
 const trendingSection = document.querySelector('#trends');
 const relatedSection = document.querySelector('#relate');
-const categoriesSection = document.querySelector('#categorias');
+const categoriesSection = document.querySelector('#categories');
 const popularSection = document.querySelector('#popular');
 const upcomingSection = document.querySelector('#upcoming');
 const footerSection = document.querySelector('#aboutme');
@@ -27,7 +27,7 @@ const upcomingPreviewMovieList = document.querySelector('.upcoming .upcomingPrev
 // Elements
 const verDescripcion = document.querySelector('.generalDescription');
 const cerrarDescripcion = document.querySelector('.close-img');
-const menuMovil = document.querySelector('#header svg');
+const menuHamburger = document.querySelector('.hamburger');
 const headerTitle = document.querySelector('.header header');
 const categoryHeaderTitle = document.querySelector('.categories-title')
 const categoriesList = document.querySelector('.categories-list');
@@ -36,7 +36,15 @@ const relatedHomeBtn = document.querySelector('.relatedHomeBack');
 const categoriesHomeBtn = document.querySelector('.categoriesHomeBack');
 const popularHomeBtn = document.querySelector('.popularHomeBack');
 const upcomingHomeBtn = document.querySelector('.upcomingHomeBack');
+const generalDescriptionContainer = document.querySelector('.cardDescription');
 
 const searchFormBtn = document.querySelector('#searchBtn');
+const searchFrmBtn = document.querySelector('#searchFrmBtn');
 const closeBtn = document.querySelector('.closeBtn');
 const infoBtn = document.querySelector('.movieDetail_btn-info');
+
+const trendingBtn = document.querySelector('.trendingPreview-btn');
+const relatedBtn = document.querySelector('.relatedPreview-btn');
+const categoriesBtn = document.querySelector('.categoriesPreview-btn');
+const popularBtn = document.querySelector('.popularPreview-btn');
+const upcomingBtn = document.querySelector('.upcomingPreview-btn');
