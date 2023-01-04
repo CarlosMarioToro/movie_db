@@ -5,13 +5,50 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
+        'language': 'es',
     },
 });
 
 const API_URL = 'https://api.themoviedb.org/3';
 const IMAGE_URL = 'https://image.tmdb.org/t/p/';
 
-const imageSize = 'original';
+const
+    screen = {
+        small: null,
+        medium: window.matchMedia('(min-width: 400px)'),
+        large: window.matchMedia('(min-width: 800px)')
+    };
+
+let imageSize = 'w300';
+
+function resizeHandler() {
+
+    // get window width
+    if (window.matchMedia("(max-width: 375px)").matches) {
+        imageSize = 'w300';
+        getTrendingMoviesPreview();
+        getCategoriesPreview();
+        getCategoriesMoviesPreview();
+        getPopularMoviesPreview();
+        getUpcomingMoviesPreview();
+    } else if (window.matchMedia("(min-width: 376px) and (max-width: 992px)").matches) {
+        imageSize = 'w500';
+        getTrendingMoviesPreview();
+        getCategoriesPreview();
+        getCategoriesMoviesPreview();
+        getPopularMoviesPreview();
+        getUpcomingMoviesPreview();       
+    } else if (window.matchMedia("(min-width: 993px)").matches) {
+        imageSize = 'original';
+        getTrendingMoviesPreview();
+        getCategoriesPreview();
+        getCategoriesMoviesPreview();
+        getPopularMoviesPreview();
+        getUpcomingMoviesPreview();      
+    }
+
+    
+}
 
 function minutesToString(minutes) {
     var hour = Math.floor(minutes / 60);
@@ -20,14 +57,25 @@ function minutesToString(minutes) {
 }
 
 // Utils
-
 function createMovies(movies, container) {
     container.innerHTML = '';
 
-    console.log(movies);
+    console.log(createMovies.caller.name); 
+
+    if (createMovies.caller.name === 'getTrendingMoviesPreview') {
+        where = 'Trending';
+    } else if (createMovies.caller.name === 'getRelatedMoviesPreview') {
+        where = 'Related';
+    } else if (createMovies.caller.name === 'getPopularMoviesPreview') {
+        where = 'Popular';
+    } else if (createMovies.caller.name === 'getUpcomingMoviesPreview') {
+        where = 'Upcoming';
+    } else {
+        where = 'Category';
+    }
+
     movies.forEach(movie => {
         if (movie.poster_path !== null) {
-            console.log(movie.poster_path);
             const movieContainer = document.createElement('div');
             movieContainer.classList.add('movie-container');
     
@@ -36,10 +84,12 @@ function createMovies(movies, container) {
             movieImg.setAttribute('alt', movie.title);
             movieImg.setAttribute('title', movie.title);
             movieImg.setAttribute('src', IMAGE_URL + imageSize + movie.poster_path);
+            movieImg.setAttribute('where', where);
     
             movieImg.addEventListener('click', () => {
                 location.hash = `#moviedetails=${movie.id}-${movie.original_title}`;
                 getBackgroundMoviesPreview(movie.id);
+                trendingTxt.innerHTML = movieImg.getAttribute('where')
             });
     
             movieContainer.appendChild(movieImg);
@@ -51,6 +101,8 @@ function createMovies(movies, container) {
 async function getBackgroundMoviesPreview(id) {
     const { data } = await api('/movie/' + id);
 
+    console.log(data);
+
     const imagen = document.getElementById('movieBackground');
     imagen.style.backgroundImage = "url(" + IMAGE_URL + imageSize + data.poster_path + ")";
     const score = document.getElementById('score');
@@ -59,6 +111,7 @@ async function getBackgroundMoviesPreview(id) {
     duration.innerText = minutesToString(data.runtime);
     const title = document.getElementById('title');
     title.innerText = data.title;
+    // trendingTxt.innerText = 'sdfsdf';
 
     infoBtn.addEventListener('click', () => {
         location.hash = `#moviedetails=${data.id}-${data.original_title}`;
@@ -97,7 +150,7 @@ async function generalDescription(id) {
 
     generalDescription_image.classList.add('movie-img');
     generalDescription_image.setAttribute('alt', data.original_title);
-    generalDescription_image.setAttribute('src', IMAGE_URL + 'w300' + data.poster_path);
+    generalDescription_image.setAttribute('src', IMAGE_URL + imageSize + data.poster_path);
     generalDescription_title.classList.add('generalDescription_title');
     generalDescription_description.classList.add('movieDetail-description');
     generalDescription_description.setAttribute('id', 'description');
@@ -148,6 +201,7 @@ async function getCategoriesMoviesPreview(id) {
     const { data } = await api('/discover/movie?with_genres=' + id);
 
     const movies = data.results;
+    console.log(data.results);
     createMovies(movies, categoriesPreviewMovieList);
 }
 

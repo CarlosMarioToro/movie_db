@@ -48,3 +48,4 @@ const relatedBtn = document.querySelector('.relatedPreview-btn');
 const categoriesBtn = document.querySelector('.categoriesPreview-btn');
 const popularBtn = document.querySelector('.popularPreview-btn');
 const upcomingBtn = document.querySelector('.upcomingPreview-btn');
+const trendingTxt = document.querySelector('.movieDetail-trending');

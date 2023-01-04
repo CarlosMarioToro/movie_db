@@ -272,9 +272,9 @@ button {
     text-decoration: none;
     display: block;
     padding: 10px 20px;
-    border-bottom: 2px solid #456789;
+    border-bottom: 2px solid var(--background-footer-pickled_bluewood);
     max-width: 100%;
-    background: #234567;
+    background: var(--background-bunker);
     font-variant: small-caps;
     text-shadow: 1px 1px black;
 }
