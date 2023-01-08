@@ -5,7 +5,7 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
-        'language': 'es',
+        'language': 'es-CO',
     },
 });
 
@@ -19,13 +19,13 @@ const
         large: window.matchMedia('(min-width: 800px)')
     };
 
-let imageSize = 'w300';
+let imageSize = 'w342';
 
 function resizeHandler() {
 
     // get window width
     if (window.matchMedia("(max-width: 375px)").matches) {
-        imageSize = 'w300';
+        imageSize = 'w342';
         getTrendingMoviesPreview();
         getCategoriesPreview();
         getCategoriesMoviesPreview();
@@ -59,8 +59,6 @@ function minutesToString(minutes) {
 // Utils
 function createMovies(movies, container) {
     container.innerHTML = '';
-
-    console.log(createMovies.caller.name); 
 
     if (createMovies.caller.name === 'getTrendingMoviesPreview') {
         where = 'Trending';
@@ -100,8 +98,6 @@ function createMovies(movies, container) {
 
 async function getBackgroundMoviesPreview(id) {
     const { data } = await api('/movie/' + id);
-
-    console.log(data);
 
     const imagen = document.getElementById('movieBackground');
     imagen.style.backgroundImage = "url(" + IMAGE_URL + imageSize + data.poster_path + ")";
@@ -201,7 +197,6 @@ async function getCategoriesMoviesPreview(id) {
     const { data } = await api('/discover/movie?with_genres=' + id);
 
     const movies = data.results;
-    console.log(data.results);
     createMovies(movies, categoriesPreviewMovieList);
 }
 
@@ -248,7 +243,7 @@ async function getUpcomingMoviesPreview() {
 }
 
 async function getMoviesBySearch(query) {
-    const { data } = await api('/search/movie?query=' + query);
+    const { data } = await api('/search/movie' + query);
 
     const movies = data.results;
     createMovies(movies, categoriesPreviewMovieList);
